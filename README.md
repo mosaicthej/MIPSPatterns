@@ -1,143 +1,110 @@
-# MIPSPatterns
-A resource for common coding structures in MIPS.
+# RISCVPatterns
+A resource for common coding structures in RISC-V.
 
-It's often difficult to translate high level programming structures that are
-often delimited by punctuation or indentation into the mostly syntax-free
-environment that is MIPS assembly. This resource aims to provide general
-patterns for beginning users to adapt for their needs as well as provide
-explanations that allow them to combine the different structures and eventually
-extend them to solve more subtle problems.
+Translating high-level programming structures into assembly language can be challenging, especially in a syntax-minimal environment like RISC-V assembly. This resource aims to provide patterns for beginners to adapt to their needs, offering explanations that enable them to combine and extend these structures for more complex problems.
 
-In this way, these files are meant to be _suggestions_ or _aids_, ___not___
-rules and laws. This is not the only way to solve your problems but it can help
-you get started.
+These files are meant to be _guides_ or _aids_, ___not___ strict rules. They offer one way to approach problems and help in getting started.
 
-Each file has two versions, one in `explained/` and another in `simplified/`.
-The version in `explained/` contains explanation and descriptions of why and how
-we do things as well as where things go and what things do. The version in
-`simplified/` has nothing but the bare minimum of comments in an effort to
-distill the structure. Some of the explanations are rather long so the
-simplified files assume you already know why something might be done in a
-certain way.
+Each file is available in two versions: one in `explained/` with detailed explanations, and another in `simplified/` with minimal comments for clarity.
 
-The content is divided up as follows:
-<!--
-  This has to be in HTML because markdown does not support specifying the type
-  of ordered list.
---->
+## Contents
+
 <ol type="1">
   <li>
     <a href="explained/01-SyntaxAndStructure">Syntax and Structure</a>:
-    Discusses how a MIPS assembly file is structured.
+    Overview of RISC-V assembly file structure.
     <ol type="a">
       <li>
-        Labels and Sections: Introduces data/text section and labels within
-        each.
+        Labels and Sections: Introduction to data/text section and labels.
       </li>
       <li>
-        Data Section: Introduces common data section directives.
+        Data Section: Common data section directives in RISC-V.
       </li>
     </ol>
   </li>
   <li>
-    <a href="explained/02-Subroutines">Subroutines</a>: Discusses how to
-    interact with <em>basic</em> subroutines (leaf functions).
+    <a href="explained/02-Subroutines">Subroutines</a>: Handling basic subroutines (leaf functions) in RISC-V.
     <ol type="a">
       <li>
-        Subroutines: Introduces basic leaf functions. More advanced functions
-        <a href="#stack">use the stack</a>.
+        Subroutines: Basics of leaf functions in RISC-V. Advanced functions use the stack.
       </li>
       <li>
-        Main: Introduces what main should look like.
+        Main: Structure of the main function in RISC-V.
       </li>
     </ol>
   </li>
   <li>
-    <a href="explained/03-Conditionals">Conditionals</a>: Discusses how to
-    form basic conditional statements.
+    <a href="explained/03-Conditionals">Conditionals</a>: Forming basic conditional statements in RISC-V.
     <ol type="a">
       <li>
-        If: Introduces a basic if conditional.
+        If: Basic if conditional in RISC-V.
       </li>
       <li>
-        If/Else: Introduces an if with an unconditional else block.
+        If/Else: If with an unconditional else block in RISC-V.
       </li>
       <li>
-        If/Elif/Else: Introduces an if with conditional elif blocks and finally
-        an unconditional else block.
+        If/Elif/Else: If with conditional elif blocks and an unconditional else block in RISC-V.
       </li>
       <li>
-        Alternate If/Elif/Else: Shows a different style of conditionals that
-        some may prefer.
+        Alternate If/Elif/Else: A different style of conditionals in RISC-V.
       </li>
     </ol>
   </li>
   <li>
-    <a href="explained/04-Loops">Loops</a>: Discusses how to form
-    basic loop statements.
+    <a href="explained/04-Loops">Loops</a>: Basic loop structures in RISC-V.
     <ol type="a">
       <li>
-        Precondition Loop: Introduces loops with a condition check before the
-        body.
+        Precondition Loop: Loops with a condition check before the body in RISC-V.
       </li>
       <li>
-        Postcondition Loop: Introduces loops with an initial guard and then a
-        condition check after the body.
+        Postcondition Loop: Loops with an initial guard and then a condition check after the body in RISC-V.
       </li>
     </ol>
   </li>
   <li>
-    <a href="explained/05-ComplexConditions">Complex Conditions</a>: Discusses how to form
-    composite conditions.
+    <a href="explained/05-ComplexConditions">Complex Conditions</a>: Forming composite conditions in RISC-V.
     <ol type="a">
       <li>
-        And: Introduces a two-part condition joined by an and.
+        And: Two-part condition joined by an and in RISC-V.
       </li>
       <li>
-        Or: Introduces a two-part condition joined by an or.
+        Or: Two-part condition joined by an or in RISC-V.
       </li>
     </ol>
   </li>
   <li>
-    <a href="explained/06-Stack" name="stack">Stack</a>: Discusses
-    how to interact with the stack. This topic can be more difficult than
-    previous sections.
+    <a href="explained/06-Stack">Stack</a>: Interacting with the stack in RISC-V.
     <ol type="a">
       <li>
-        Saved Register Calling Convention: Introduces how to manage saved
-        registers in a subroutine.
+        Saved Register Calling Convention: Managing saved registers in a subroutine.
       </li>
       <li>
-        Return Address Calling Convention: Introduces how to manage the return
-        address register when a subroutine calls other subroutines.
+        Return Address Calling Convention: Managing the return address register in nested subroutines.
       </li>
       <li>
-        Temporary Register Calling Convention: Introduces how to manage
-        temporary registers that are live across subroutine calls.
+        Temporary Register Calling Convention: Managing temporary registers across subroutine calls.
       </li>
       <li>
-        Single Stack Unwind: Introduces a method to simplify subroutine code
-        by using a single exit point.
+        Single Stack Unwind: Simplifying subroutine code with a single exit point.
       </li>
     </ol>
   </li>
   <li>
-    <a href="explained/07-Kernel" name="stack">Kernel</a>: Discusses
-    how to act as the kernel. This topic can be more difficult than previous
-    sections as well.
+    <a href="explained/07-Kernel">Kernel</a>: Acting as the kernel in RISC-V.
     <ol type="a">
       <li>
-        Sections: Introduces the new sections used when acting as the kernel.
+        Sections: The new sections used in kernel mode.
       </li>
       <li>
-        __start: Introduces the __start label and how to use it.
+        __start: The __start label and its usage in RISC-V.
       </li>
       <li>
-        Register Saving: Introduces how to save registers in the kernel.
+        Register Saving: Saving registers in the RISC-V kernel.
       </li>
     </ol>
   </li>
 </ol>
 
 # Contributors
- * Braedy Kuzma
+ * Braedy Kuzma (MIPS)
+ * Mark Jia
