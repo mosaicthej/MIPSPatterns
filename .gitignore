@@ -1,0 +1,17 @@
+# ignore all the binary files
+# by first ignoring all files, then unignoring ones with extensions and directories
+*
+!*/
+!*.*
+
+# we also want to keep makefiles
+!Makefile
+
+# compiler generated files
+*.o
+*.d
+*.s
+
+# libraries
+*.lib
+*.a
