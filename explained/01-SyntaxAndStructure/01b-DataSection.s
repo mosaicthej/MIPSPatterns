@@ -1,78 +1,91 @@
 #------------------------------------
-# Common MIPS Patterns - Data Section
-# Author: Braedy Kuzma
-# Date: January 31, 2019
+# Common RISC-V Patterns - Data Section
+# Original MIPS Version Author: Braedy Kuzma
+# RISC-V Version Adaptation by: Mark Jia
+# Date: 2024-01-12
 #------------------------------------
-# Copyright 2019 Braedy Kuzma
+# Original Work Copyright 2019 Braedy Kuzma
 #
-# Licensed under the Apache License, Version 2.0
+# Adapted work based on the original licensed under the Apache License, Version 2.0
 # You may obtain a copy of the License at
 # http://www.apache.org/licenses/LICENSE-2.0
 #------------------------------------
+# Do whatever you want, just don't make it boring :D
+#------------------------------------
+# RISC-V Data Section Guide
+#------------------------------------
+# The data section in RISC-V assembly is where we declare and initialize static variables. 
+# It's similar to global variables in high-level programming languages. 
+# Here, we'll go through different types of data you can define and how to do it.
 
-# The data section is used to allocate static space for variables. Here are a
-# few you might care about.
-
-# This directive starts the data section.
+# This directive marks the beginning of the data section.
 .data
 
-# All of the the following directives can be initialised by putting a comma
-# separated list of values after the directive.
+# Below are various directives to allocate and initialize different types of data.
 
-# Allocating space for bytes of data uses the .byte directive.
+# .byte - Allocates space for bytes (8 bits each).
+# Syntax: .byte value1, value2, ...
+# Example:
 aByte:
-  .byte 255
+  .byte 255  # Allocates a single byte with value 255.
 
 manyBytes:
-  .byte 1, 2, 3, 0x55, -128
+  .byte 1, 2, 3, 0x55, -128  # Allocates multiple bytes with specified values.
 
-# Allocating space for a halfword (2 bytes) uses the .half directive.
+# .half - Allocates space for halfwords (16 bits or 2 bytes).
+# Syntax: .half value1, value2, ...
+# Example:
 aHalfword:
-  .half 65535
+  .half 65535  # Allocates a single halfword with value 65535.
 
 manyHalfwords:
-  .half 256, 0xFFFE, -19
+  .half 256, 0xFFFE, -19  # Allocates multiple halfwords.
 
-# Allocating space for a word (4 bytes, an int, a pointer) uses the .word
-# directive.
+# .word - Allocates space for words (32 bits or 4 bytes). 
+# Commonly used for integers and pointers.
+# Syntax: .word value1, value2, ...
+# Example:
 aWord:
-  .word 4294967295
+  .word 4294967295  # Allocates a single word.
 
 manyWords:
-  .word 65536, 0xDEADBEEF, -2147483648
+  .word 65536, 0xDEADBEEF, -2147483648  # Allocates multiple words.
 
-# Allocating space for a float (4 bytes, IEEE 754 float) uses the .float
-# directive.
+# .float - Allocates space for floating-point numbers (32 bits).
+# Follows the IEEE 754 standard.
+# Syntax: .float value1, value2, ...
+# Example:
 aFloat:
-  .float 1.0
+  .float 1.0  # Allocates a single float.
 
 manyFloats:
-  .float -1.0, 1000.0001
+  .float -1.0, 1000.0001  # Allocates multiple floats.
 
-# Allocating space for characters has two options, .ascii or .asciiz. The first
-# directive will make an array of characters while the second will make the same
-# array of characters but will ALSO add a null character at the end. Therefore,
-# it may be more appropriate to use .ascii when you just need array of
-# characters while .asciiz is good for printing strings.
-# It's important to remember that characters are just bytes with specific
-# values, see here: http://www.asciitable.com/index/asciifull.gif
-
-# For example, all of these are equivalent.
+# Character Strings: .ascii and .asciiz
+# .ascii - Allocates an array of characters without a null terminator.
+# .asciiz - Allocates a null-terminated string, useful for printing.
+# Example:
 hwString:
-  .asciiz "Hello world!"
+  .asciiz "Hello world!"  # Null-terminated string.
 
 hwChars:
-  .ascii "Hello world!"
-  .byte 0x00
+  .ascii "Hello world!"  # Array of characters.
+  .byte 0x00  # Adding null terminator manually.
 
 hwBytes:
-  .byte 0x48, 0x65, 0x6C, 0x6C, 0x6f, 0x20, 0x77, 0x6F, 0x72, 0x6C, 0x64, 0x21
-  .byte 0x00
+  .byte 0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x20, 0x77, 0x6F, 0x72, 0x6C, 0x64, 0x21
+  .byte 0x00  # Manually spelling out "Hello world!" with ASCII codes.
 
-# Alternately, if you'd like to just request UNINITIALISED space for data (for
-# an array or something similar) you can use the .space directive. This will
-# give you the requested number of BYTES of space uninitialised.
-
-# Space for 16 words.
+# Uninitialized Space: .space
+# .space - Allocates a specified number of bytes without initializing them.
+# Useful for reserving space for arrays or buffers.
+# Syntax: .space size_in_bytes
+# Example:
 someSpace:
-  .space 64
+  .space 64  # Allocates 64 bytes of uninitialized space.
+
+#------------------------------------
+# For more detailed information and additional pseudo-ops, 
+# refer to the RISC-V Assembly Manual: 
+# https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md#pseudo-ops
+#------------------------------------
